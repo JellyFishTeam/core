@@ -1,5 +1,5 @@
 # core
-core
+
 master 为稳定版本分支  
 develop 为测试版本分支  
 剩余分支按名称为个人分支  
