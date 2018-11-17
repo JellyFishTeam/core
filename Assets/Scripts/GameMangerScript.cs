@@ -13,16 +13,18 @@ public class GameMangerScript : MonoBehaviour {
     public int happy=10;
     int count = 0;
     GameObject fish;
+    public GameObject restart;
 
     // Use this for initialization
     void Start () {
+        restart.SetActive(false);
        // fish = GameObject.FindGameObjectWithTag("Fish");
     }
 	
 	// Update is called once per frame
      void Update () {
         GameObject fish = GameObject.FindGameObjectWithTag("Fish");
-        fish.transform.localScale = new Vector3(happy * 0.2f, happy * 0.2f, happy * 0.2f);
+        fish.transform.localScale = new Vector3(happy * 0.4f, happy * 0.4f, happy * 0.4f);
         fishfrom = fish.transform.position;
         fishto = fish.transform.position;
         if (onClicked)
@@ -42,6 +44,8 @@ public class GameMangerScript : MonoBehaviour {
 
         //Lines[0].SetPosition(0, from);
         //Lines[0].SetPosition(1, to);
+        Lines[1].startColor = Color.blue;
+        Lines[1].endColor = Color.blue;
         Lines[1].SetPosition(0, fishfrom);
         Lines[1].SetPosition(1, fishto);
         if(fishto-fishfrom != new Vector3(0f, 0f, 0f))
@@ -67,7 +71,9 @@ public class GameMangerScript : MonoBehaviour {
         //Debug.Log(happy);
         if (happy < 3)
         {
-            Destroy(fish);
+
+            gameover();
+            //Destroy(fish);
         }
         
 
@@ -84,6 +90,18 @@ public class GameMangerScript : MonoBehaviour {
     private void OnMouseUp()
     {
        
+    }
+    public void gameover()
+    {
+        restart.SetActive(true);
+        restart.transform.position = new Vector3(GameObject.FindGameObjectWithTag("MainCamera").transform.position.x, GameObject.FindGameObjectWithTag("MainCamera").transform.position.y, 1);
+        Time.timeScale = 0;
+    }
+
+    public void restartgame()
+    {
+        Time.timeScale = 1;
+        happy = 10;
     }
 
     public void getfood()

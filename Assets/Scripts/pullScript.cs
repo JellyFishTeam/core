@@ -91,7 +91,7 @@ public class pullScript : MonoBehaviour {
         }
         else
         {
-            force = force1 / 1.5F;
+            force = force1 / 2;
             speed = 10.0f;
         }
        
@@ -130,7 +130,9 @@ public class pullScript : MonoBehaviour {
 
         if (collision.collider.tag == "Enemy")
         {
-            Destroy(this.gameObject);
+
+            GameMangerScript gameManger = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameMangerScript>();
+            gameManger.SendMessage("gameover");
 
         }
     }
@@ -141,10 +143,20 @@ public class pullScript : MonoBehaviour {
         if (collision.collider.tag == "solat")
         {
             colliderConveyeryBand = true;
+            //Debug.Log("in");
         }
 
 
        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.tag == "solat")
+        {
+            colliderConveyeryBand = false;
+           // Debug.Log("out");
+        }
     }
 
 

@@ -8,11 +8,19 @@ public class EnemyBehaviourScript : MonoBehaviour {
     private float z=1;
     Vector3 updd;
     int count=0;
+    float Xmax;
+    float Xmin;
+    float Ymax;
+    float Ymin;
 
     // Use this for initialization
     void Start () {
-		 
-	}
+        Xmax = transform.position.x + 20;
+        Ymax = transform.position.y + 10;
+        Xmin = transform.position.x - 20;
+        Ymin = transform.position.y - 10;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,33 +28,27 @@ public class EnemyBehaviourScript : MonoBehaviour {
 
         //target = transform.position + Quaternion.Euler(0,0 , Random.value * 90) * Vector3.forward;
         //updd = Quaternion.Euler(0, 0, Random.value * 90) * transform.up;
-        if (transform.position.x > 40f)
+        if (transform.position.x >Xmax)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, -1), new Vector3(0, 1, 0));
             z = -1;
         }
-        if (transform.position.x < 0f)
+        if (transform.position.x < Xmin)
         {
             transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
             z = 1;
         }
-        if (transform.position.y > 10)
+        if (transform.position.y > Ymax)
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, -1, 0));
-        }
-        if (transform.position.y < -10)
-        {
-            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
-        }
-        if (transform.position.y > 10f)
-        {
-            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, -1, 0));
+            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, z), new Vector3(0, -1, 0));
             
         }
-        if (transform.position.y < -10f)
+        if (transform.position.y < Ymin)
         {
-            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 1), new Vector3(0, 1, 0));
+            transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, z), new Vector3(0, 1, 0));
+           
         }
+
         if (count > 10)
         {
             updd = Quaternion.Euler(0, 0, Random.Range(-1f,1f)*10) * transform.up;

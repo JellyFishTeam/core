@@ -225,6 +225,7 @@
     <Compile Include="Assets\Scripts\FoodScript.cs" />
     <Compile Include="Assets\Scripts\GameMangerScript.cs" />
     <Compile Include="Assets\Scripts\pullScript.cs" />
+    <Compile Include="Assets\Scripts\RestartScript.cs" />
     <Compile Include="Assets\Scripts\TurtleScript.cs" />
   </ItemGroup>
   <ItemGroup>
